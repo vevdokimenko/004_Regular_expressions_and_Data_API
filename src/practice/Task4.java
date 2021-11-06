@@ -33,9 +33,9 @@ public class Task4 {
 
 
 class User {
-    private String userName;
-    private String userPhone;
-    private String userEmail;
+    private final String userName;
+    private final String userPhone;
+    private final String userEmail;
 
     public User(String userName, String userPhone, String userEmail) {
         this.userName = userName;
