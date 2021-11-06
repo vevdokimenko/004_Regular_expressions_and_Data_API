@@ -12,7 +12,7 @@ public class Task3 {
     public static void main(String[] args) {
         String str = "Versions: Java  5, Java 6, Java   7, Java 8.";
 
-        Pattern pattern = Pattern.compile("(Java)( +)(\\d)");
+        Pattern pattern = Pattern.compile("(Java)(\\s+)(\\d)");
         Matcher matcher = pattern.matcher(str);
 
         while (matcher.find()) {
