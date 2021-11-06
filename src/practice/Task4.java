@@ -21,11 +21,12 @@ public class Task4 {
         Pattern phonePattern = Pattern.compile("\\+38\\(0\\d{2}\\)\\d{2}[\\s|-]\\d{2}[\\s|-]\\d{3}");
         Pattern emailPattern = Pattern.compile("[a-zA-z]+\\d*@\\w+\\.\\w{2,3}");
 
-        String userName = registration.newField("Введите логин", loginPattern);
-        String userPhone = registration.newField("Введите номер телефона", phonePattern);
-        String userEmail = registration.newField("Введите email", emailPattern);
+        User user = new User(
+                registration.newField("Введите логин", loginPattern),
+                registration.newField("Введите номер телефона", phonePattern),
+                registration.newField("Введите email", emailPattern)
+        );
 
-        User user = new User(userName, userPhone, userEmail);
         System.out.println("Создан пользователь" + user);
     }
 }
