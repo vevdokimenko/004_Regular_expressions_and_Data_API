@@ -15,56 +15,23 @@ import java.util.regex.Pattern;
 
 public class Task4 {
     public static void main(String[] args) {
-        Pattern login = Pattern.compile("[a-zA-Z0-9]{1,10}");
-        Pattern phone = Pattern.compile("\\+38\\(0\\d{2}\\)\\d{2}[\\s|-]\\d{2}[\\s|-]\\d{3}");
-        Pattern email = Pattern.compile("\\w+@\\w+\\.\\w{2,3}");
+        Pattern loginPattern = Pattern.compile("[a-zA-Z0-9]{1,10}");
+        Pattern phonePattern = Pattern.compile("\\+38\\(0\\d{2}\\)\\d{2}[\\s|-]\\d{2}[\\s|-]\\d{3}");
+        Pattern emailPattern = Pattern.compile("[a-zA-z]+\\d*@\\w+\\.\\w{2,3}");
 
         Scanner sc = new Scanner(System.in);
+        Registration registration = new Registration();
 
-        String userName;
-        String userPhone;
-        String userEmail;
-
-        while (true) {
-            System.out.println("Введите имя пользователя:");
-            String loginInput = sc.nextLine();
-            Matcher loginMatcher = login.matcher(loginInput);
-            if (!loginMatcher.matches())
-                System.out.println("Некорректный логин, введите еще раз");
-            else {
-                userName = loginInput;
-                break;
-            }
-        }
-
-        while (true) {
-            System.out.println("Введите номер телефона:");
-            String phoneInput = sc.nextLine();
-            Matcher phoneMatcher = phone.matcher(phoneInput);
-            if (!phoneMatcher.matches())
-                System.out.println("Некорректный номер телефона, введите еще раз");
-            else {
-                userPhone = phoneInput;
-                break;
-            }
-        }
-
-        while (true) {
-            System.out.println("Введите email:");
-            String emailInput = sc.nextLine();
-            Matcher emailMatcher = email.matcher(emailInput);
-            if (!emailMatcher.matches())
-                System.out.println("Некорректный email, введите еще раз");
-            else {
-                userEmail = emailInput;
-                break;
-            }
-        }
+        String userName = registration.newField("Введите логин", loginPattern);
+        String userPhone = registration.newField("Введите номер телефона", phonePattern);
+        String userEmail = registration.newField("Введите email", emailPattern);
 
         User user = new User(userName, userPhone, userEmail);
         System.out.println("Создан пользователь" + user);
     }
 }
+
+
 
 class User {
     private String userName;
@@ -84,5 +51,18 @@ class User {
                 ", userPhone='" + userPhone + '\'' +
                 ", userEmail='" + userEmail + '\'' +
                 '}';
+    }
+}
+
+class Registration {
+    public String newField(String message, Pattern pattern) {
+        while (true) {
+            System.out.println(message);
+            String text = new Scanner(System.in).nextLine();
+            Matcher emailMatcher = pattern.matcher(text);
+            if (emailMatcher.matches()) {
+                return text;
+            }
+        }
     }
 }
