@@ -1,0 +1,11 @@
+/CBS.iml
+*/.idea/
+/out/
+*/out/
+*.pdf
+*.iml
+*.txt
+/.idea/
+/005_Samples/src/com/itvdn/javaEssential/
+/004_Samples/src/com/itvdn/javaEssential/
+/src/com/itvdn/javaProfessional/
